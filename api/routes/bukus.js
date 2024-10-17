@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const Buku = require('../model/buku');
+const BukuController = require('../controller/buku');
+const buku = require('../model/buku');
 
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
@@ -9,19 +10,12 @@ const Buku = require('../model/buku');
 // });
 
 //format JSON
-router.post('/', (req,res) => {
-    const buku = new Buku({
-        judul: req.body.judul,
-        penulis: req.body.penulis,
-        genre: req.body.genre
-    });
+router.post('/', BukuController.createBuku);
 
-    console.log(buku);
-    res.status(201).json({
-        message: 'Data berhasil disimpan'
-    });
-});
+router.get('/', BukuController.readBuku);
 
+router.delete('/:id', BukuController.deleteBuku);
 
+router.put('/:id', BukuController.updateBuku);
 
 module.exports = router;

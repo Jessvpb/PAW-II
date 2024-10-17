@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bukusRouter = require('./routes/bukus');
 
+const mongoose = require('mongoose');
 
 //CORS Enabled
 //Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers.
@@ -21,6 +22,16 @@ app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
+
+mongoose.connect(
+  "mongodb://localhost:27017/dbbuku"
+).then(()=>{
+  console.log("Connected to Database");
+}).catch((err)=>{
+  // console.error('App starting error:', err.stack);
+  console.log("Connection Failed");
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

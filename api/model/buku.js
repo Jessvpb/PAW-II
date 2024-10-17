@@ -1,6 +1,6 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const bukuSchema = new moongoose.Schema(
+const bukuSchema = new mongoose.Schema(
     {
         judul: {
             type: String,
@@ -17,4 +17,4 @@ const bukuSchema = new moongoose.Schema(
     }
 );
 
-module.exports = moongoose.model('Buku', bukuSchema);
+module.exports = mongoose.model('Buku', bukuSchema);
