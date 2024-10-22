@@ -57,32 +57,29 @@ const deleteBuku = (req, res) => {
 };
 
 const updateBuku = (req, res) => {
+   
     const buku = new Buku({
-        _id: req.params.id,
-        judul: req.body.judul,
-        penulis: req.body.penulis,
-        genre: req.body.genre
-    })
-    .catch((err)=>{
-        res.status(500).json({
-            message: "Internal Server Error",
-            error: err
-        });
-    });
+       _id : req.params.id,
+       judul : req.body.judul,
+       penulis : req.body.penulis,
+       genre : req.body.genre
+   });
 
-    Buku.updateOne({_id: req.params.id}, buku)
-    .then((hasil)=>{
-        res.status(200).json({
-            message: "Update berhasil",
-            result: hasil
-        });
-    })
-    .catch((err)=>{
-        res.status(500).json({
-            message: "Internal Server Error",
-            error: err
-        });
-    });
+
+   Buku.updateOne({_id : req.params.id}, buku)
+   .then((hasil)=>{
+       res.status(200).json({
+           message : "Update Berhasil",
+           result : hasil    
+       });
+   })
+   .catch((err)=>{
+       res.status(500).json({
+           message : "Internal server error"
+       });
+   });
+
+
 };
 
 module.exports = {createBuku, readBuku, deleteBuku, updateBuku};
