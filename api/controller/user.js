@@ -1,24 +1,41 @@
 const User = require('../model/user');
+const bcrypt = require('bcrypt');
 
 const signUp = (req,res) => {
-    const user = new User({
-        email : req.body.email,
-        password : req.body.password
-    });
-
-    user.save()
-    .then((result) => {
-        res.status(202).json({
-            message : 'User Created',
-            // result : result
+    bcrypt.hash(req.body.password, 10)
+    .then((hash)=>{
+        const user = new User({
+            email : req.body.email,
+            password : hash
         });
-    })
-    .catch((err) => {
-        res.status(501).json({
-            message : 'Internal Server Error',
-            error : err
+        user.save()
+        .then((result) => {
+            res.status(202).json({
+                message : 'User Created',
+                // result : result
+            });
+        })
+        .catch((err) => {
+            res.status(501).json({
+                message : 'Internal Server Error',
+                // error : err
+            });
         });
     });
 };
 
-module.exports = { signUp};
+const login = (req,res) => {
+    let fetchedUser;
+    User.findOne({ email : req.body.email})
+    .then((user) => {
+        if(!user){
+            return res.status(401).json({
+                message : 'Auth Failed, email not exist !'
+            });
+        }
+        fetchedUser = user;
+        return bcrypt.compare(req.body.password, user.password);
+    })
+};
+
+module.exports = { signUp, login};
