@@ -6,10 +6,10 @@ const bukuSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        penulis: {
+        penulis: [{
             type: String,
             required: true
-        },
+        }],
         genre: [{
             type: String,
             required: true
