@@ -16,15 +16,15 @@ require("./app_server/model/db");
 //Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers.
 var app = express();
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
-    "Access-Control-Allow-Methods",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With,Content-Type, Accept"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
+    "GET, POST, PATCH, DELETE, OPTIONS"
   );
   next();
 });

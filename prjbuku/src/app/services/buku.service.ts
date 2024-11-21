@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Buku } from '../models/buku.mode';
 import { HttpClient } from '@angular/common/http';
+import { Buku } from '../models/buku.model';
 
 @Injectable({
   providedIn: 'root',

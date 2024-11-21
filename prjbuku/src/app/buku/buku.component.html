@@ -12,6 +12,9 @@
             <label for="judul" class="form-label">Judul</label>
             <input
               type="text"
+              [ngClass]="
+                judul.invalid && bukuForm.submitted ? 'is-invalid' : ''
+              "
               class="form-control"
               id="judul"
               placeholder="Judul Buku"
@@ -21,9 +24,12 @@
               required
             />
 
-            <!-- <div *ngIf="judul.invalid && bukuForm.submitted" class="invalid-feedback">
-                          Judul Buku harus diisi
-                      </div> -->
+            <div
+              *ngIf="judul.invalid && bukuForm.submitted"
+              class="invalid-feedback"
+            >
+              Judul Buku harus diisi
+            </div>
           </div>
           <div class="mb-3">
             <label for="penulis" class="form-label">Penulis</label>
