@@ -1,5 +1,6 @@
 export interface Buku {
-    judul : string,
-    pengarang : string,
-    genre : string[],
+  _id: string | null;
+  judul: string;
+  penulis: string;
+  genre: string[];
 }
